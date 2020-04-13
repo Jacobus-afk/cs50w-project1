@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+    Register
 {% endblock %}
 
 {% block main %}
 
 <div class="wrapper">
     
-    <form class="boook-form" action="/login" method="post">
-        <h2>Boooks Sign in</h2>
+    <form class="boook-form" action="/register" method="post">
+        <h2>Sign up for Boooks</h2>
         <div class="input-fields">
             <input type="text" class="input" placeholder="Name" name="username">
             <input type="password" class="input" placeholder="Password" name="password">
         </div>
         <div class="button-field">
-            <input type="submit" value="Sign in" class="form-button">
+            <input type="submit" value="Register" class="form-button">
         </div>
     </form>
 </div>

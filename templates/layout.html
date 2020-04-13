@@ -6,6 +6,7 @@
         <link href="../static/styles.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/ac4cfb10ae.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2&display=swap" rel="stylesheet"> 
+        {% block head %}{% endblock %}
         <title>BOOOKS {% block title %}{% endblock %}</title>
     </head>
     <body>
@@ -13,35 +14,49 @@
             <ul class="nav-ul">
             {% if session.uid %}
                 <li class="nav-item">
-                    <a href=# class="nav-link">
+                    <a href="/logout" class="nav-link">
                         <i class="fas fa-sign-out-alt fa-fw"></i>
                         <span class="link-text">Sign out</span>
                     </a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a href=# class="nav-link">
+                    <a href="/register" class="nav-link">
                         <i class="fas fa-user-plus fa-fw"></i>
                         <span class="link-text">Sign up</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href=# class="nav-link">
+                    <a href="/login" class="nav-link">
                         <i class="fas fa-sign-in-alt fa-fw"></i>
                         <span class="link-text">Sign in</span>
                     </a>
                 </li>
                 <li class="logo">
-                    <a href=# class="nav-link">
+                    <a href="/" class="nav-link">
                         
                         <i class="fas fa-book fa-fw logo-icon"></i>
-                        <span class="link-text logo-text">BOOOKS &middot</span>
+                        <span class="link-text logo-text">BOOOKS &nbsp&middot</span>
                     </a>
                 </li>
             {% endif %}
             </ul>
         </nav>
+
+
+
         <main>
+
+
+            {% for cat,message in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{cat}}">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+
+
         {% block main %}{% endblock %}
         </main>
     </body>

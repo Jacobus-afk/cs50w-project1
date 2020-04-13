@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, redirect, request, render_template
+from flask import Flask, session, redirect, request, render_template, flash
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -38,14 +38,56 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
-    print("test")
-    return "Test"
+    return render_template("index.html")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     session.clear()
     if request.method == "POST":
-        pass
+        uname = request.form.get("username")
+        pwd = request.form.get("password")
+        if not uname or not pwd:
+            flash("Username or password entries can't be blank","info")
+            return render_template("login.html")
+        req = db.execute("SELECT * FROM users WHERE username = :un", {"un": uname}).fetchone()
+
+        if not req  or not check_password_hash(req.hash, pwd):
+            flash("Invalid username and/or password", "error")
+            return render_template("login.html")
+        session["uid"] = req.id
+        return redirect("/")
+    
     else:
         return render_template("login.html")
     
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    session.clear()
+    if request.method == "POST":
+        uname = request.form.get("username")
+        pwd = request.form.get("password")
+
+        if not uname or not pwd:
+            flash("Username or password entries can't be blank","info")
+            return render_template("register.html")
+
+        hash = generate_password_hash(pwd)
+        try:
+            db.execute("INSERT INTO users (username,hash) VALUES(:un, :h)", {"un": uname, "h":hash})
+            db.commit()
+        except Exception as e:
+            if "already exists" in str(e):
+                flash("Username already exists in database. Please choose a different one", "info")
+                return render_template("register.html")
+            print(e)
+
+        id = db.execute("SELECT id FROM users WHERE username = :un", {"un": uname}).fetchone()
+        session["uid"] = id[0]
+        return redirect("/")
+    else:
+        return render_template("register.html")

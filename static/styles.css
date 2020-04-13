@@ -6,6 +6,8 @@
     font-family: 'Baloo Paaji 2', cursive;
     --tran-speed: 600ms;
     --nav-size: 5rem;
+    --bgcolor: brown;
+
 }
 
 body
@@ -25,8 +27,9 @@ main
     width: var(--nav-size);
     height: 100vh;
     position: fixed;
-    background-color: brown;
+    background-color: var(--bgcolor);
     transition: width var(--tran-speed) ease;
+    box-shadow: 0 0 10px black;
 }
 
 .nav-ul
@@ -119,7 +122,13 @@ main
     }
     main
     {
-        margin: 0;
+        margin-top: var(--nav-size);
+        margin-left: 0;
+    }
+
+    .input-fields
+    {
+        width: 100%;
     }
 }
 
@@ -182,13 +191,109 @@ main
     }
     .navbar:hover .logo-icon
     {
-      animation-name: disPlace;
-      animation-duration: var(--tran-speed);
-      animation-fill-mode: forwards;
+        animation-name: disPlace;
+        animation-duration: var(--tran-speed);
+        animation-fill-mode: forwards;
     }
   
     .navbar:hover .logo-text
     {
       left: 0px;
+
     }
+}
+
+/**************alert box**********/
+
+.alert
+{
+    padding: 20px;
+    
+    color: white;
+    margin-left: 50%;
+    margin-bottom: 15px;
+    filter: opacity(60%);
+    border-radius: 5px;
+}
+
+.alert-info
+{
+    background-color: #008CBA;
+}
+
+.alert-error
+{
+    background-color: red;
+}
+
+.closebtn
+{
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+/**************forms**************/
+
+.wrapper
+{
+    position: absolute;
+    top: 25%;
+    width: 93%;
+}
+
+.boook-form
+{
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: var(--bgcolor);
+    padding: 10px 30px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px black;
+    flex-direction: column;
+}
+
+.boook-form h2
+{
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.input-fields
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input
+{
+    margin: 10px 0;
+    background: transparent;
+    border: 0px;
+    border-bottom: 2px solid #da7171;
+    padding: 10px;
+    width: 90%;
+}
+
+.button-field
+{
+    padding-top: 10px;
+}
+
+.form-button
+{
+
+    text-align: center;
+    padding: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #da7171;
+    cursor: pointer;
 }
