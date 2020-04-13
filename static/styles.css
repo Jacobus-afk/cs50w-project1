@@ -1,0 +1,194 @@
+/*based on fireship's animated navbar: https://www.youtube.com/watch?v=biOMz4puGt8&t=613s*/
+
+:root 
+{
+    font-size: 16px;
+    font-family: 'Baloo Paaji 2', cursive;
+    --tran-speed: 600ms;
+    --nav-size: 5rem;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+main
+{
+    margin-left: var(--nav-size);
+    padding: 1rem;
+}
+
+.navbar
+{
+    width: var(--nav-size);
+    height: 100vh;
+    position: fixed;
+    background-color: brown;
+    transition: width var(--tran-speed) ease;
+}
+
+.nav-ul
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-item
+{
+    width: 100%;
+}
+
+.nav-item:last-child
+{
+    margin-top: auto;
+}
+
+.nav-link
+{
+    display: flex;
+    align-items: center;
+    height: var(--nav-size);
+    color: darkred;
+    text-decoration: none;
+    /*filter: hue-rotate(25%) opacity(0.2);*/
+    transition: var(--tran-speed);
+}
+
+.nav-link:hover
+{
+    color: black;
+    /*filter: hue-rotate(0%) opacity(1);*/
+    background: #da7171;
+}
+
+.link-text
+{
+    display: none;
+    margin-left: 1rem;
+}
+
+.nav-link i
+{
+    font-size: 2rem;
+    /*width: 2rem;
+    min-width: 2rem;*/
+    margin: 1.2rem;
+}
+
+.logo
+{
+    text-align: center;
+    margin-top: auto;
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 0.3ch;
+    width: 100%;
+}
+
+.logo-text
+{
+    display: inline;
+    position: absolute;
+    left: -999px;
+    transition: var(--transition-speed);
+}
+
+@media only screen and (max-width: 600px)
+{
+    .navbar
+    {
+        top: 0;
+        width: 100vw;
+        height: var(--nav-size);
+    }
+
+    .nav-ul
+    {
+        flex-direction: row;
+    }
+    .nav-link
+    {
+        justify-content: center;
+    }
+    main
+    {
+        margin: 0;
+    }
+}
+
+@keyframes fadeIn
+{
+    0%
+    {
+        opacity: 0;
+    }
+    100%
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes disPlace
+{
+    0%
+    {
+        margin: 1.2rem;
+    }
+    100%
+    {
+        margin-left: 11rem;
+    }
+}
+
+@keyframes place
+{
+    0%
+    {
+        margin-left: 11rem;
+        
+    }
+    100%
+    {
+        margin: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 600px)
+{
+    .navbar .logo-icon
+    {
+        animation-name: place;
+        animation-duration: var(--tran-speed);
+        transition: all;
+    }
+
+    .navbar:hover
+    {
+        width: 16rem;
+    }
+
+    .navbar:hover .link-text
+    {
+        animation-name: fadeIn;
+        animation-duration: 1.6s;
+        display: inline;
+    }
+    .navbar:hover .logo-icon
+    {
+      animation-name: disPlace;
+      animation-duration: var(--tran-speed);
+      animation-fill-mode: forwards;
+    }
+  
+    .navbar:hover .logo-text
+    {
+      left: 0px;
+    }
+}
