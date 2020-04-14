@@ -91,3 +91,36 @@ def register():
         return redirect("/")
     else:
         return render_template("register.html")
+
+@app.route("/search", methods=["GET", "POST"])
+@login_required
+def search():
+    if request.method == "POST":
+        book = request.form.get("searchbook")
+        if not book:
+            flash("Blank search query", "info")
+            return render_template("search.html")
+        wc_book_wc = "%{}%".format(book.lower())
+        query = ("SELECT isbn, title, author, year FROM books WHERE "
+                "LOWER(title) LIKE :tq "
+                "OR LOWER(author) LIKE :tq "
+                "OR LOWER(isbn) LIKE :tq")
+        resp = db.execute(query ,{"tq": wc_book_wc}).fetchall()
+        if not resp:
+            flash("Sorry, nothing found", "info")
+            return render_template("search.html")
+        session["book_list"] = resp
+        return render_template("books.html", book_list=resp)
+        return redirect("/")
+    else:
+        return render_template("search.html")
+
+@app.route("/book/<string:isbn>")
+@login_required
+def book(isbn):
+    book = next((entry for entry in session["book_list"] if entry["isbn"] == isbn), None)
+    if book:
+        flash(book, "info")
+        return render_template("book.html")
+    else:
+        flash("Error! Couldn't find book", "error")

@@ -7,19 +7,24 @@
     --tran-speed: 600ms;
     --nav-size: 5rem;
     --bgcolor: brown;
-
+    --bgcoloralt: #da7171;
+    --txtcolor: black;
+    --txtcoloralt: darkred;
+    --bgcolormain: darkgrey;
 }
 
 body
 {
     margin: 0;
     padding: 0;
+    background-color: var(--bgcolormain);
 }
 
 main
 {
     margin-left: var(--nav-size);
     padding: 1rem;
+    
 }
 
 .navbar
@@ -30,6 +35,7 @@ main
     background-color: var(--bgcolor);
     transition: width var(--tran-speed) ease;
     box-shadow: 0 0 10px black;
+    border: 2px solid;
 }
 
 .nav-ul
@@ -58,7 +64,7 @@ main
     display: flex;
     align-items: center;
     height: var(--nav-size);
-    color: darkred;
+    color: var(--txtcoloralt);
     text-decoration: none;
     transition: var(--tran-speed);
 }
@@ -66,12 +72,12 @@ main
 .nav-link:hover
 {
     /*color: black;*/
-    background: #da7171;
+    background: var(--bgcoloralt);
 }
 
 .nav-active
 {
-    color: black;
+    color: var(--txtcolor);
 }
 
 .link-text
@@ -80,13 +86,15 @@ main
     margin-left: 2rem;
 }
 
-.nav-link i
+i
 {
     font-size: 2rem;
+}
+
+.nav-link i
+{
+    
     width: 2rem;
-    /*height: 2.7rem;*/
-    /*width: 2rem;
-    min-width: 2rem;*/
     margin: 1.2rem;
 }
 
@@ -247,16 +255,17 @@ main
 {
     padding: 20px;
     
-    color: white;
+    color: var(--txtcolor);
     margin-left: 50%;
     margin-bottom: 15px;
-    filter: opacity(60%);
+    /*filter: opacity(50%);*/
     border-radius: 5px;
+    border: 2px solid;
 }
 
 .alert-info
 {
-    background-color: #008CBA;
+    background-color: deepskyblue;
 }
 
 .alert-error
@@ -267,7 +276,7 @@ main
 .closebtn
 {
     margin-left: 15px;
-    color: white;
+    color: var(--txtcolor);
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -295,29 +304,23 @@ main
     border-radius: 5px;
     box-shadow: 0 0 10px black;
     flex-direction: column;
-}
-
-.boook-form h2
-{
-    text-align: center;
-    margin-bottom: 0px;
+    border: 2px solid;
 }
 
 .input-fields
 {
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
-.input
+.form-input
 {
     margin: 10px 0;
-    background: transparent;
-    border: 0px;
-    border-bottom: 2px solid #da7171;
+    background: var(--bgcolormain);
+    border-radius: 5px;
+    border: 2px solid;
+    /*border-bottom: 2px solid var(--bgcoloralt);*/
     padding: 10px;
-    width: 90%;
 }
 
 .button-field
@@ -329,9 +332,61 @@ main
 {
 
     text-align: center;
-    padding: 5px;
-    border: 0px;
+    padding: 5px 20px;
+    border: 2px solid;
     border-radius: 5px;
-    background-color: #da7171;
+    background: var(--bgcolor);
     cursor: pointer;
+}
+
+/**********Table****************/
+
+.container-table
+{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.book-table
+{
+    border-spacing: 0;
+    border-collapse: separate;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 10px black;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.book-table thead tr
+{
+    
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+    text-align: left;
+    font-weight: bold;
+}
+
+.book-table th, .book-table td
+{
+    padding: 12px 15px;
+}
+
+.book-table tbody tr
+{
+    border-bottom: 1px solid var(grey);
+}
+
+.book-link
+{
+    display: block;
+    text-decoration: none;
+    color: var(--txtcolor);
+}
+
+.book-table tbody tr:nth-of-type(even)
+{
+    background-color: silver;
 }

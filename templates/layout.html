@@ -14,6 +14,20 @@
             <ul class="nav-ul">
             {% if session.uid %}
                 <li class="nav-item">
+                    <a href="/search" class="nav-link{% if active == 'search' %} nav-active{% endif %}">
+                        <i class="fab fa-searchengin"></i>
+                        <span class="link-text">Find book</span>
+                    </a>
+                </li>
+                {% if active == 'books' %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-active">
+                        <i class="fas fa-book-open"></i>
+                        <span class="link-text">List books</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
                     <a href="/logout" class="nav-link">
                         <i class="fas fa-sign-out-alt "></i>
                         <span class="link-text">Sign out</span>

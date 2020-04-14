@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% set active = "books" %}
+
+{% block title %}
+    Books
+{% endblock %}
+
+{% block main %}
+<div class="container-table">
+    <table class="book-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in book_list %}
+            <tr>
+                    <td><a class="book-link" href="/book/{{ book.isbn }}">{{ book.title }}</a></td>
+                    <td><a class="book-link" href="/book/{{ book.isbn }}">{{ book.author }}</a></td>
+                    <td><a class="book-link" href="/book/{{ book.isbn }}">{{ book.isbn }}</a></td>
+                    <td><a class="book-link" href="/book/{{ book.isbn }}">{{ book.year }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

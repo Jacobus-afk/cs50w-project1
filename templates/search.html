@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% set active = "search" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+<div class="wrapper">
+    <form class="boook-form" action="/search" method="post">
+        <div class="input-fields">
+            <input type="text" class="form-input" name="searchbook" placeholder="Search for book ISBN, title or author">
+        </div>
+        <div class="button-field">
+            <input type="submit" value="Search" class="form-button">
+        </div>
+    </form>
+</div>
+{% endblock %}
