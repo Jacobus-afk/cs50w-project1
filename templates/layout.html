@@ -15,31 +15,32 @@
             {% if session.uid %}
                 <li class="nav-item">
                     <a href="/logout" class="nav-link">
-                        <i class="fas fa-sign-out-alt fa-fw"></i>
+                        <i class="fas fa-sign-out-alt "></i>
                         <span class="link-text">Sign out</span>
                     </a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a href="/register" class="nav-link">
-                        <i class="fas fa-user-plus fa-fw"></i>
+                    <a href="/register" class="nav-link{% if active == 'register' %} nav-active{% endif %}">
+                        <i class="fas fa-user-plus "></i>
                         <span class="link-text">Sign up</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/login" class="nav-link">
-                        <i class="fas fa-sign-in-alt fa-fw"></i>
+                    <a href="/login" class="nav-link {% if active == 'login' %} nav-active{% endif %}">
+                        <i class="fas fa-sign-in-alt "></i>
                         <span class="link-text">Sign in</span>
                     </a>
                 </li>
-                <li class="logo">
-                    <a href="/" class="nav-link">
-                        
-                        <i class="fas fa-book fa-fw logo-icon"></i>
-                        <span class="link-text logo-text">BOOOKS &nbsp&middot</span>
-                    </a>
-                </li>
+
             {% endif %}
+            <li class="logo">
+                <a href="/" class="nav-link {% if active == 'index' %} nav-active{% endif %}">
+                    
+                    <i class="fas fa-book  logo-icon"></i>
+                    <span class="link-text logo-text">BOOOKS &middot</span>
+                </a>
+            </li>
             </ul>
         </nav>
 

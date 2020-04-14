@@ -60,26 +60,31 @@ main
     height: var(--nav-size);
     color: darkred;
     text-decoration: none;
-    /*filter: hue-rotate(25%) opacity(0.2);*/
     transition: var(--tran-speed);
 }
 
 .nav-link:hover
 {
-    color: black;
-    /*filter: hue-rotate(0%) opacity(1);*/
+    /*color: black;*/
     background: #da7171;
+}
+
+.nav-active
+{
+    color: black;
 }
 
 .link-text
 {
     display: none;
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 
 .nav-link i
 {
     font-size: 2rem;
+    width: 2rem;
+    /*height: 2.7rem;*/
     /*width: 2rem;
     min-width: 2rem;*/
     margin: 1.2rem;
@@ -103,7 +108,7 @@ main
     transition: var(--transition-speed);
 }
 
-@media only screen and (max-width: 600px)
+@media only screen and (max-width: 930px)
 {
     .navbar
     {
@@ -169,7 +174,32 @@ main
     }
 }
 
-@media only screen and (min-width: 600px)
+@keyframes thinner
+{
+    0%
+    {
+        width: 16rem;
+    }
+    100%
+    {
+        width: 5rem;
+    }
+}
+
+@keyframes wider
+{
+    0%
+    {
+        width: 5rem;
+    }
+    100%
+    {
+        width: 16rem;
+    }
+}
+
+
+@media only screen and (min-width: 930px)
 {
     .navbar .logo-icon
     {
@@ -178,9 +208,18 @@ main
         transition: all;
     }
 
+    .navbar
+    {
+        animation-name: thinner;
+        animation-duration: var(--tran-speed);
+    }
+
     .navbar:hover
     {
-        width: 16rem;
+        animation-name: wider;
+        animation-duration: var(--tran-speed);
+        animation-fill-mode: forwards;
+        /*width: 16rem;*/
     }
 
     .navbar:hover .link-text
@@ -199,7 +238,6 @@ main
     .navbar:hover .logo-text
     {
       left: 0px;
-
     }
 }
 
