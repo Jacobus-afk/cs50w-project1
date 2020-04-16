@@ -7,4 +7,45 @@
 {% endblock %}
 
 {% block main %}
+<div class="container-table">
+
+    <div class="container-row">
+
+        <div class="box">
+            <div class="card">
+                <div class="card-img">
+                    <img src="/static/cover_not_found.jpg" id="underlay-img"alt="">
+                    <img src="http://covers.openlibrary.org/b/isbn/{{book_info.isbn}}-L.jpg" class="responsive-img">
+                    
+                </div>
+
+                <div class="card-details">
+                    <h2 class="card-h2">
+                        {{book_info.title}}
+                        <br><span>{{book_info.author}}</span>   
+                        <span>{{book_info.year}}</span>                 
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <!--<ul class="book-list">
+            <li class="book-item">Author: {{book_info.author}}</li>
+            <li class="book-item">Title: {{book_info.title}}</li>
+            <li class="book-item">Year: {{book_info.year}}</li>
+            <li class="book-item">ISBN: {{book_info.isbn}}</li>
+            <li class="book-item"><img src="http://covers.openlibrary.org/b/isbn/{{book_info.isbn}}-L.jpg" alt="cover"></li>
+        </ul>-->
+    </div>
+
+    <div class="container-row">
+        
+    </div>
+
+</div>
+<footer>
+    Book covers courtesy of <a href="https://openlibrary.org/dev/docs/api/covers">Open Library</a>
+    <br>
+    Default photo by <a href="https://www.pexels.com/@designedbyjess?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Plush Design Studio</a>
+</footer>
 {% endblock %}

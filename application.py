@@ -121,6 +121,7 @@ def book(isbn):
     book = next((entry for entry in session["book_list"] if entry["isbn"] == isbn), None)
     if book:
         flash(book, "info")
-        return render_template("book.html")
+        return render_template("book.html", book_info = book)
     else:
         flash("Error! Couldn't find book", "error")
+        return render_template("index.html")
