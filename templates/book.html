@@ -36,11 +36,36 @@
             <li class="book-item">ISBN: {{book_info.isbn}}</li>
             <li class="book-item"><img src="http://covers.openlibrary.org/b/isbn/{{book_info.isbn}}-L.jpg" alt="cover"></li>
         </ul>-->
-    </div>
-
-    <div class="container-row">
-        
-    </div>
+        <div class="box">
+            <div class="review-card">
+                {% if not own_review %}
+                <form class="review-form" action="/review" method="post">
+                    <div class="textbox-form">
+                        <textarea name="review" placeholder="Your review here"></textarea>
+                    </div>
+                    <div class="radio-form">
+                        <h4>Your rating</h4>
+                        <input type="radio" class="radio-item" name="rating" value="1" id="radio-1">
+                        <label class="label-item" for="radio-1">☆</label>
+                        <input type="radio" class="radio-item" name="rating" value="2" id="radio-2">
+                        <label class="label-item" for="radio-2">☆</label>
+                        <input type="radio" class="radio-item" name="rating" value="3" id="radio-3">
+                        <label class="label-item" for="radio-3">☆</label>
+                        <input type="radio" class="radio-item" name="rating" value="4" id="radio-4">
+                        <label class="label-item" for="radio-4">☆</label>
+                        <input type="radio" class="radio-item" name="rating" value="5" id="radio-5">
+                        <label class="label-item" for="radio-5">☆</label>
+                        <div class="rating">
+                    </div>
+                        <div class="submit-form">
+                            <input type="submit" value="Submit" class="form-button">
+                        </div>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+</div>
 
 </div>
 <footer>

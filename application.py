@@ -38,6 +38,7 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
+    flash(session["uid"],"info")
     return render_template("index.html")
 
 @app.route("/logout")
@@ -101,7 +102,7 @@ def search():
             flash("Blank search query", "info")
             return render_template("search.html")
         wc_book_wc = "%{}%".format(book.lower())
-        query = ("SELECT isbn, title, author, year FROM books WHERE "
+        query = ("SELECT id, isbn, title, author, year FROM books WHERE "
                 "LOWER(title) LIKE :tq "
                 "OR LOWER(author) LIKE :tq "
                 "OR LOWER(isbn) LIKE :tq")
@@ -120,8 +121,31 @@ def search():
 def book(isbn):
     book = next((entry for entry in session["book_list"] if entry["isbn"] == isbn), None)
     if book:
-        flash(book, "info")
-        return render_template("book.html", book_info = book)
+        session["current_book"] = book
+        query = ("select * FROM reviews WHERE book_id=:id")
+        resp = db.execute(query, {"id": book.id}).fetchall()
+        own_review = None
+        if not resp:
+            flash("No reviews yet", "info")
+        else:
+            own_review = next((entry for entry in resp if entry["user_id"] == session["uid"]), None)
+            flash(resp, "info")
+        return render_template("book.html", book_info = book, own_review = own_review)
     else:
         flash("Error! Couldn't find book", "error")
         return render_template("index.html")
+
+@app.route("/review", methods=["GET", "POST"])
+@login_required
+def review():
+    if request.method == "POST":
+        rating = request.form.get("rating")
+        review = request.form.get("review")
+        if not rating or not review:
+            flash("Please write a review and select a rating for the book", "error")
+            return redirect(f"/book/{session['current_book'].isbn}")
+
+        flash(f"{rating}  {review}", "info")
+        return render_template("index.html")
+    else:
+        return redirect("/")

@@ -41,15 +41,20 @@ footer
 
 /**************alert box**********/
 
+.alert-div
+{
+    position: absolute;
+    width: 35%;
+    right: 15px;
+    z-index: 997;
+}
+
 .alert
 {
-    padding: 20px;
-    position: fixed;
     color: var(--txtcolor);
-    margin-left: 60%;
+    padding: 20px;
     margin-bottom: 15px;
-    z-index: 999;
-    /*filter: opacity(50%);*/
+
     border-radius: 5px;
     border: 2px solid;
 }
@@ -195,9 +200,12 @@ i
         width: 100%;
     }
 
-    .alert
+    .alert-div
     {
-        margin-left: 0%;
+        position: absolute;
+        width: 100%;
+        margin-left: 0;
+        right: 0;
     }
 }
 
@@ -416,6 +424,12 @@ i
 }
 
 /*********card*************/
+.container-row
+{
+    display: flex;
+    flex-direction: column;
+}
+
 .box
 {
     display: grid;
@@ -427,9 +441,10 @@ i
     position: relative;
     width: 400px;
     height: 600px;
-    background: lightgray;
+    background: var(--bgcolor);
     margin: 0 auto;
     border-radius: 5px;
+    border: 2px solid;
     box-shadow: 0 0 10px black;
 }
 
@@ -492,4 +507,78 @@ i
     font-size: 1rem;
     display: block;
     margin-top: 5px;
+}
+
+/*********review card************/
+.review-card
+{
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background: var(--bgcolor);
+    margin: 40px auto;
+    border-radius: 5px;
+    border: 2px solid;
+    box-shadow: 0 0 10px black;
+}
+
+.textbox-form
+{
+    text-align: center;
+    height: 130px;
+    padding-top: 4px;
+}
+
+.textbox-form textarea
+{
+    resize: none;
+    background: var(--bgcolormain);
+    width: 98%;
+    height: 98%; 
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.radio-form
+{
+    text-align: center;
+
+    /*padding-left: 20px;*/
+    width: 100%;
+    height: auto;
+}
+.radio-form h4
+{
+    margin: 0px;
+}
+.radio-item
+{
+    display: none;
+}
+
+.label-item
+{
+    display: inline-block;
+    position: relative;
+    width: 1.1rem;
+}
+
+.label-item:hover:before
+{
+    content: "★";
+    position: absolute;
+}
+
+.radio-item:checked + .label-item:before
+{
+    color: orange;
+    content: "★";
+    position: absolute;
+}
+.submit-form
+{
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
 }
