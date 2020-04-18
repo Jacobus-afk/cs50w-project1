@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block main %}
-<div class="container-table">
+<div class="container-main">
 
     <div class="container-row">
 
@@ -66,23 +66,62 @@
                 {% else %}
                 <div class="review-box">
                     <h4 class="review-heading">Your review</h4>
-                    <div class="static-review"><span>{{ own_review.review }}</span></div>
+                    <div class="static-review">
+                        <span class="sr-span">{{ own_review.review }}</span>
+                    </div>
                 </div>
-                <div class="rating-box">
-                    <h4 class="review-heading">Rating</h4>
-                    {% for star in range(own_review.rating) %}
-                    <label class="label-item" style="color: orange;">★</label>
-                    {% endfor %}
+                <div class="rating-box-holder">
+                    <div class="rating-box">
+                        <h4 class="review-heading">Rating</h4>
+                        {% for star in range(own_review.rating) %}
+                        <label class="label-item" style="color: orange;">★</label>
+                        {% endfor %}
+                    </div>
                 </div>
                 {% endif %}
             </div>
         </div>
-</div>
+    </div>
+    <div class="container-row">
+        <div class="box">
+            <div class="review-card">
+                <div class="review-box">
+                    <h4 class="review-heading">Other reviews</h4>
+                    {% for entry in other_reviews %}
+                        {% if loop.index < 11 %}
+                    
+                    <div class="static-review">
+                        <span class="trunc-span">{{ entry.review }}</span>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!--</div>-->
+        <div class="box">
+            <div class="review-card">
+                <div class="review-box">
+                    <h4 class="review-heading">Goodreads</h4>
+                    <div class="avg-rating">
+                        <div class="static-review">
+                            Average rating: {{ gr_avg }} from {{ gr_cnt }} reviews
+                        </div>
+                    </div>
+                    <div class="rating-box-holder">
+                        <div class="rating-box">
+                            <h4 class="review-heading">Rating</h4>
+                            {% for star in range(gr_stars) %}
+                            <label class="label-item" style="color: orange;">★</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
-<footer>
-    Book covers courtesy of <a href="https://openlibrary.org/dev/docs/api/covers">Open Library</a>
-    <br>
-    Default photo by <a href="https://www.pexels.com/@designedbyjess?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Plush Design Studio</a>
-</footer>
+
+
 {% endblock %}

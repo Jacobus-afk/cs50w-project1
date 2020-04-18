@@ -1,12 +1,12 @@
 import os
 
-from flask import Flask, session, redirect, request, render_template, flash
+from flask import Flask, session, redirect, request, render_template, flash, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
-#import requests
+import requests
 
 #res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "01RIlNJQxWp7QLLXGUeVEQ", "isbns": "9781632168146"})
 #print(res.json())
@@ -34,6 +34,30 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
+@app.route("/api/<string:isbn>")
+def book_api(isbn):
+    query = ("SELECT id, isbn, title, author, year FROM books WHERE isbn=:isbn")
+    book = db.execute(query, {"isbn": isbn}).fetchone()
+    if not book:
+        return "404 Error! ISBN number not in database", 404
+    query = ("SELECT rating, review FROM reviews WHERE book_id=:b_id")
+    reviews = db.execute(query, {"b_id": book.id}).fetchall()
+    review_count = len(reviews)
+    average_score = 0.0
+    for entry in reviews:
+        average_score += entry.rating
+    if average_score:
+        average_score /= review_count
+
+    return jsonify({
+        "title": book.title,
+        "author": book.author,
+        "year": book.year,
+        "isbn": book.isbn,
+        "review_count": review_count,
+        "average_score": f"{average_score:.1f}"
+    })
 
 @app.route("/")
 @login_required
@@ -122,15 +146,26 @@ def book(isbn):
     book = next((entry for entry in session["book_list"] if entry["isbn"] == isbn), None)
     if book:
         session["current_book"] = book
-        query = ("SELECT * FROM reviews WHERE book_id=:id")
-        resp = db.execute(query, {"id": book.id}).fetchall()
-        own_review = None
+        query = ("SELECT * FROM reviews WHERE book_id=:id AND user_id=:uid")
+        own_review = db.execute(query, {"id": book.id, "uid": session["uid"]}).fetchone()
+        query = ("SELECT * FROM reviews WHERE book_id=:id AND user_id!=:uid")
+        other_reviews = db.execute(query, {"id": book.id, "uid": session["uid"]}).fetchall()
+
         #if not resp:
         #    flash("No reviews yet", "info")
-        if resp:
-            own_review = next((entry for entry in resp if entry["user_id"] == session["uid"]), None)
-            flash(resp, "info")
-        return render_template("book.html", book_info = book, own_review = own_review)
+        #if resp:
+            #own_review = next((entry for entry in resp if entry["user_id"] == session["uid"]), None)
+        #flash(other_reviews, "info")
+        query = ("https://www.goodreads.com/book/review_counts.json")
+        params = {"key": "01RIlNJQxWp7QLLXGUeVEQ", "isbns": book.isbn}
+        resp = requests.get(query, params = params)
+        goodread_data = resp.json()["books"][0]
+        avg_rating = goodread_data["average_rating"]
+        rating_cnt = goodread_data["work_ratings_count"]
+        stars = int(float(avg_rating) + 0.5)
+        #flash("test","info")
+        return render_template("book.html", book_info = book, own_review = own_review, other_reviews = other_reviews, \
+            gr_stars = stars, gr_avg = avg_rating, gr_cnt = rating_cnt)
     else:
         flash("Error! Couldn't find book", "error")
         return render_template("index.html")
@@ -153,3 +188,6 @@ def review():
         return redirect(f"/book/{session['current_book'].isbn}")
     else:
         return redirect("/")
+
+
+

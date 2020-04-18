@@ -23,8 +23,8 @@ body
 main
 {
     margin-left: var(--nav-size);
-    padding: 1rem;
-    
+    padding: 0.8rem;
+    margin-bottom: 20px;
 }
 
 footer
@@ -174,6 +174,360 @@ i
     transition: var(--transition-speed);
 }
 
+/**************forms**************/
+
+.wrapper
+{
+    position: absolute;
+    top: 25%;
+    width: 93%;
+}
+
+.boook-form
+{
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: var(--bgcolor);
+    padding: 10px 30px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px black;
+    flex-direction: column;
+    border: 2px solid;
+}
+
+.input-fields
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input
+{
+    margin: 10px 0;
+    background: var(--bgcolormain);
+    border-radius: 5px;
+    border: 2px solid;
+    /*border-bottom: 2px solid var(--bgcoloralt);*/
+    padding: 10px;
+}
+
+.button-field
+{
+    padding-top: 10px;
+}
+
+.form-button
+{
+
+    text-align: center;
+    padding: 5px 20px;
+    border: 2px solid;
+    border-radius: 5px;
+    background: var(--bgcolor);
+    cursor: pointer;
+}
+
+/**********Table****************/
+
+.container-table
+{
+    display: flex;
+    justify-content: center;
+}
+
+.book-table
+{
+    border-spacing: 0;
+    border-collapse: separate;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 10px black;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.book-table thead tr
+{
+    
+    background-color: var(--bgcolor);
+    color: var(--txtcolor);
+    text-align: left;
+    font-weight: bold;
+}
+
+.book-table th, .book-table td
+{
+    padding: 12px 15px;
+}
+
+.book-table tbody tr
+{
+    border-bottom: 1px solid var(grey);
+}
+
+.book-link
+{
+    display: block;
+    text-decoration: none;
+    color: var(--txtcolor);
+}
+
+.book-table tbody tr:nth-of-type(even)
+{
+    background-color: silver;
+}
+
+/*********card*************/
+
+.container-main
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.container-row
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.box
+{
+    display: grid;
+    margin: 0 auto;
+}
+
+.card
+{
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background: var(--bgcolor);
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 2px solid;
+    box-shadow: 0 0 10px black;
+    padding: 4px;
+}
+
+.card .card-img
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    transition: var(--tran-speed);
+    z-index: 1;
+}
+
+.card:hover .card-img
+{
+    bottom: 195px;
+}
+
+.responsive-img, #underlay-img
+{
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.responsive-img
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+
+.card .card-details
+{
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    max-height: 200px;
+    min-height: 130px;
+    text-align: center;
+}
+
+.card-h2
+{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 0.3ch;
+    text-transform: uppercase;
+}
+
+.card-h2 span
+{
+    font-size: 1rem;
+    display: block;
+    margin-top: 5px;
+}
+
+/*********review card************/
+.review-card
+{
+    position: relative;
+    width: 400px;
+    /*height: 260px;*/
+    height: auto;
+    background: var(--bgcolor);
+    margin: 30px auto;
+    border-radius: 5px;
+    border: 2px solid;
+    box-shadow: 0 0 10px black;
+    padding: 4px;
+}
+
+.textbox-form
+{
+    text-align: center;
+    height: 150px;
+    padding-top: 4px;
+}
+
+.textbox-form textarea
+{
+    resize: none;
+    background: var(--bgcolormain);
+    width: 98%;
+    height: 98%; 
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid;
+}
+/*
+.radio-form
+{
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+*/
+/*.radio-form h4
+{
+    margin: 0px;
+}*/
+.radio-item
+{
+    display: none;
+}
+
+.label-item
+{
+    display: inline-block;
+    position: relative;
+    /*bottom: 5px;*/
+    width: 1.3rem;
+}
+
+.label-item:hover:before
+{
+    content: "★";
+    position: absolute;
+}
+
+.radio-item:checked + .label-item:before
+{
+    color: orange;
+    content: "★";
+    position: absolute;
+}
+.submit-form
+{
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+}
+
+/*************static  user review*********/
+.review-box
+{
+    text-align: center;
+    height: auto;
+    padding-top: 4px;
+}
+
+.rating-box-holder
+{
+    text-align: center;
+    height: auto;
+    width: 100%;
+}
+
+.rating-box
+{
+    /*position: absolute;*/
+    bottom: 3px;
+    /*text-align: center;*/
+
+    /*padding-left: 20px;*/
+    width: auto;
+    height: auto;
+}
+
+.static-review
+{
+    /*display: inline-block;*/
+    background: var(--bgcolormain);
+    border-radius: 5px;
+    border: 2px solid;
+    /*padding: 8px;*/
+
+}
+
+.sr-span
+{
+    display:block;
+    width: auto;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.review-heading
+{
+    margin: 4px 0 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.3ch;
+    text-transform: uppercase;
+    display: block;
+}
+
+.trunc-span
+{
+    display:block;
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.trunc-span:hover
+{
+    width: auto;
+    overflow: visible;
+    word-break: break-all;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+
+/*******************************@****************************/
+/*smaller screens*/
 @media only screen and (max-width: 930px)
 {
     .navbar
@@ -208,6 +562,11 @@ i
         width: 100%;
         margin-left: 0;
         right: 0;
+    }
+    
+    .container-main
+    {
+        flex-direction: column;
     }
 }
 
@@ -315,320 +674,4 @@ i
     }
 
 
-}
-
-
-
-/**************forms**************/
-
-.wrapper
-{
-    position: absolute;
-    top: 25%;
-    width: 93%;
-}
-
-.boook-form
-{
-    display: flex;
-    max-width: 480px;
-    margin: 0 auto;
-    background-color: var(--bgcolor);
-    padding: 10px 30px 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px black;
-    flex-direction: column;
-    border: 2px solid;
-}
-
-.input-fields
-{
-    display: flex;
-    flex-direction: column;
-}
-
-.form-input
-{
-    margin: 10px 0;
-    background: var(--bgcolormain);
-    border-radius: 5px;
-    border: 2px solid;
-    /*border-bottom: 2px solid var(--bgcoloralt);*/
-    padding: 10px;
-}
-
-.button-field
-{
-    padding-top: 10px;
-}
-
-.form-button
-{
-
-    text-align: center;
-    padding: 5px 20px;
-    border: 2px solid;
-    border-radius: 5px;
-    background: var(--bgcolor);
-    cursor: pointer;
-}
-
-/**********Table****************/
-
-.container-table
-{
-    display: flex;
-    justify-content: center;
-    
-}
-
-.book-table
-{
-    border-spacing: 0;
-    border-collapse: separate;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    box-shadow: 0 0 10px black;
-    border-radius: 5px;
-    border: 2px solid;
-}
-
-.book-table thead tr
-{
-    
-    background-color: var(--bgcolor);
-    color: var(--txtcolor);
-    text-align: left;
-    font-weight: bold;
-}
-
-.book-table th, .book-table td
-{
-    padding: 12px 15px;
-}
-
-.book-table tbody tr
-{
-    border-bottom: 1px solid var(grey);
-}
-
-.book-link
-{
-    display: block;
-    text-decoration: none;
-    color: var(--txtcolor);
-}
-
-.book-table tbody tr:nth-of-type(even)
-{
-    background-color: silver;
-}
-
-/*********card*************/
-.container-row
-{
-    display: flex;
-    flex-direction: column;
-}
-
-.box
-{
-    display: grid;
-    margin: 0 auto;
-}
-
-.card
-{
-    position: relative;
-    width: 400px;
-    height: 600px;
-    background: var(--bgcolor);
-    margin: 0 auto;
-    border-radius: 5px;
-    border: 2px solid;
-    box-shadow: 0 0 10px black;
-}
-
-.card .card-img
-{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    bottom: 10px;
-    right: 10px;
-    transition: var(--tran-speed);
-    z-index: 1;
-}
-
-.card:hover .card-img
-{
-    bottom: 195px;
-}
-
-.responsive-img, #underlay-img
-{
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.responsive-img
-{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-}
-
-.card .card-details
-{
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    max-height: 200px;
-    min-height: 130px;
-    text-align: center;
-}
-
-.card-h2
-{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    font-size: 1.5rem;
-    letter-spacing: 0.3ch;
-    text-transform: uppercase;
-}
-
-.card-h2 span
-{
-    font-size: 1rem;
-    display: block;
-    margin-top: 5px;
-}
-
-/*********review card************/
-.review-card
-{
-    position: relative;
-    width: 400px;
-    height: 260px;
-    background: var(--bgcolor);
-    margin: 30px auto;
-    border-radius: 5px;
-    border: 2px solid;
-    box-shadow: 0 0 10px black;
-}
-
-.textbox-form
-{
-    text-align: center;
-    height: 150px;
-    padding-top: 4px;
-}
-
-.textbox-form textarea
-{
-    resize: none;
-    background: var(--bgcolormain);
-    width: 98%;
-    height: 98%; 
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 2px solid;
-}
-/*
-.radio-form
-{
-    text-align: center;
-    width: 100%;
-    height: auto;
-}
-*/
-/*.radio-form h4
-{
-    margin: 0px;
-}*/
-.radio-item
-{
-    display: none;
-}
-
-.label-item
-{
-    display: inline-block;
-    position: relative;
-    /*bottom: 5px;*/
-    width: 1.3rem;
-}
-
-.label-item:hover:before
-{
-    content: "★";
-    position: absolute;
-}
-
-.radio-item:checked + .label-item:before
-{
-    color: orange;
-    content: "★";
-    position: absolute;
-}
-.submit-form
-{
-    position: absolute;
-    right: 4px;
-    bottom: 4px;
-}
-
-/*************static  user review*********/
-.review-box
-{
-    /*text-align: center;*/
-    height: auto;
-    padding-top: 4px;
-}
-
-.rating-box
-{
-    position: absolute;
-    bottom: 3px;
-    text-align: center;
-
-    /*padding-left: 20px;*/
-    width: 100%;
-    height: auto;
-}
-
-.static-review
-{
-    /*display: inline-block;*/
-    background: var(--bgcolormain);
-    border-radius: 5px;
-    border: 2px solid;
-    /*padding: 8px;*/
-
-}
-
-.static-review span
-{
-    display:block;
-    width: auto;
-    white-space: pre-line;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.review-heading
-{
-    margin: 4px 0 8px;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 0.3ch;
-    text-transform: uppercase;
-    display: block;
 }
