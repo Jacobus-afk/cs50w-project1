@@ -38,7 +38,7 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
-    flash(session["uid"],"info")
+    #flash(session["uid"],"info")
     return render_template("index.html")
 
 @app.route("/logout")
@@ -112,7 +112,7 @@ def search():
             return render_template("search.html")
         session["book_list"] = resp
         return render_template("books.html", book_list=resp)
-        return redirect("/")
+        #return redirect("/")
     else:
         return render_template("search.html")
 
@@ -122,12 +122,12 @@ def book(isbn):
     book = next((entry for entry in session["book_list"] if entry["isbn"] == isbn), None)
     if book:
         session["current_book"] = book
-        query = ("select * FROM reviews WHERE book_id=:id")
+        query = ("SELECT * FROM reviews WHERE book_id=:id")
         resp = db.execute(query, {"id": book.id}).fetchall()
         own_review = None
-        if not resp:
-            flash("No reviews yet", "info")
-        else:
+        #if not resp:
+        #    flash("No reviews yet", "info")
+        if resp:
             own_review = next((entry for entry in resp if entry["user_id"] == session["uid"]), None)
             flash(resp, "info")
         return render_template("book.html", book_info = book, own_review = own_review)
@@ -145,7 +145,11 @@ def review():
             flash("Please write a review and select a rating for the book", "error")
             return redirect(f"/book/{session['current_book'].isbn}")
 
-        flash(f"{rating}  {review}", "info")
-        return render_template("index.html")
+        query = ("INSERT INTO reviews (rating, review, user_id, book_id) "
+                "VALUES (:rating, :review, :uid, :bid)")
+        db.execute(query, {"rating": rating, "review": review, "uid": session["uid"], "bid": session["current_book"].id})
+        db.commit()
+        flash("Your review was submitted", "info")
+        return redirect(f"/book/{session['current_book'].isbn}")
     else:
         return redirect("/")

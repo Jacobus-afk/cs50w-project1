@@ -23,7 +23,8 @@
                     <h2 class="card-h2">
                         {{book_info.title}}
                         <br><span>{{book_info.author}}</span>   
-                        <span>{{book_info.year}}</span>                 
+                        <span>{{book_info.year}}</span> 
+                        <span>{{book_info.isbn}}</span>                
                     </h2>
                 </div>
             </div>
@@ -41,10 +42,10 @@
                 {% if not own_review %}
                 <form class="review-form" action="/review" method="post">
                     <div class="textbox-form">
-                        <textarea name="review" placeholder="Your review here"></textarea>
+                        <textarea name="review" placeholder="Your review here" maxlength="200"></textarea>
                     </div>
-                    <div class="radio-form">
-                        <h4>Your rating</h4>
+                    <div class="rating-box">
+                        <h4 class="review-heading">Your rating</h4>
                         <input type="radio" class="radio-item" name="rating" value="1" id="radio-1">
                         <label class="label-item" for="radio-1">☆</label>
                         <input type="radio" class="radio-item" name="rating" value="2" id="radio-2">
@@ -62,6 +63,17 @@
                         </div>
                     </div>
                 </form>
+                {% else %}
+                <div class="review-box">
+                    <h4 class="review-heading">Your review</h4>
+                    <div class="static-review"><span>{{ own_review.review }}</span></div>
+                </div>
+                <div class="rating-box">
+                    <h4 class="review-heading">Rating</h4>
+                    {% for star in range(own_review.rating) %}
+                    <label class="label-item" style="color: orange;">★</label>
+                    {% endfor %}
+                </div>
                 {% endif %}
             </div>
         </div>
