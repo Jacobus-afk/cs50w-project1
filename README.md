@@ -20,3 +20,5 @@ A webpage demonstrating concepts discussed in week 1 of CS50 Web
 
 * import.py - creates, if non-existing, the users, reviews and books tables on a Heroku postgres database. Reads the entries from books.csv and inserts them into the books table.
 * application.py - Various endpoints for the different webpage functions. Handles database queries to and from the Heroku database. Does an API request to Goodreads for ratings data. Provides API access to a book's information by using it's ISBN number as a request.
+
+Online link: https://crooks-books.herokuapp.com
