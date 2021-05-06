@@ -1,6 +1,6 @@
 # Project 1
 
-## Web Programming with Python and JavaScript
+## Web Programming with Python(Flask) and JavaScript
 
 A webpage demonstrating concepts discussed in week 1 of CS50 Web
 
